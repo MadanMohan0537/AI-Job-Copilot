@@ -1,0 +1,63 @@
+# Career-Ops — Protected-Grounds Interview Questions (jurisdiction table) (#2030)
+#
+# Consumed prompt-level by modes/interview-redflag.md (Step 2c — protected-
+# grounds question detection). This file is a DATA REFERENCE, not instruction
+# logic: extending it to a new jurisdiction never requires touching the rule
+# text in modes/interview-redflag.md. No script reads it — the agent does, as
+# a LOCAL file lookup over local session transcripts. Nothing leaves the
+# machine.
+#
+# CONTRIBUTION RULE (mandatory): no entry lands in this table without
+#   1. a citable legal source — official regulator/ministry guidance is
+#      preferred (human-rights commission, labour ministry, equality body);
+#      statute text and reputable law-firm bulletins may corroborate, AND
+#   2. an explicit legal_basis citation for the list described, AND
+#   3. an `as_of` date recording when the row was last verified.
+# Unverified or "I heard that..." rows will be rejected in review. Seed
+# narrow and verified; extend via community PRs — same discipline as the
+# jurisdiction tables introduced for #2013/#2018/#2019/#2025/#2028.
+#
+# REGISTER DISCIPLINE (mandatory): rows describe what a published legal
+# framework protects or lists as do-not-ask — some are statutes creating
+# civil liability, some are administrative guidance backed by statute with
+# active regulator correction. Each row's legitimate_contexts and legal_basis
+# carry the correct register. A topic match in a transcript is NEVER a basis
+# for asserting that an interviewer broke the law or that discrimination
+# occurred: intent, bona fide occupational requirements, accommodation
+# context, and process stage are exactly the things a transcript cannot
+# self-certify. NOT LEGAL ADVICE — a private post-interview awareness aid.
+#
+# Schema per entry (list under `protected_grounds`):
+#   jurisdiction: string        — code, e.g. US-federal, US-CA
+#   jurisdiction_name: string   — human-readable name for report output
+#   grounds: list               — one item per protected ground / do-not-ask topic:
+#     topic: string             — the ground/topic
+#     group: string (optional)  — grouping label where the source framework
+#                                 groups its list
+#     example_question_patterns: list (optional)
+#                               — concrete question shapes drawn from the
+#                                 regulator's own guidance, not invented
+#     legitimate_contexts: list (optional)
+#                               — contexts in which touching the topic can be
+#                                 lawful/permissible per the same sources
+#                                 (BFOR, accommodation, post-offer stage, ...)
+#   legal_basis: string         — statute/regulation/guideline citation
+#   sources: list               — citable regulator pages/texts backing the row
+#   as_of: YYYY-MM-DD           — date this row was last verified against
+#                                 sources (quoted string — keep dates as strings)
+#
+# CANDIDATE ROWS FOR CONTRIBUTORS (US-only fork — suggestions only, do NOT
+# add without the source + legal_basis + as_of discipline above):
+#   - US-federal : EEOC pre-employment inquiry guidance (race, color,
+#                  religion, sex, national origin, age, disability, genetic
+#                  information — Title VII / ADEA / ADA / GINA); key at the
+#                  federal level first, state overlays as separate rows
+
+# NO ENTRIES YET (US-only fork): the upstream table's seeded rows were all
+# non-US (Ontario, Japan, Germany) and have been removed here rather than
+# ported. A US-federal EEOC row is a strong candidate (see above) but is
+# deliberately NOT added without a verified legal_basis + sources + as_of,
+# per the contribution rule above — fabricating a legal-citation row is
+# exactly what that rule exists to prevent. Add it via a proper PR once
+# sourced.
+protected_grounds: []
