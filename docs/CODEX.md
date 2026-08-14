@@ -2,18 +2,18 @@
 
 Career-ops supports Codex through the same shared router used by the other CLI integrations.
 
-## How Codex maps to career-ops
+## How Codex maps to AI Job Copilot
 
 - `AGENTS.md` is the shared instruction source.
 - Root `CODEX.md` is the thin Codex wrapper that imports `AGENTS.md`.
-- This file is the human-facing guide for running career-ops workflows from Codex.
+- This file is the human-facing guide for running AI Job Copilot workflows from Codex.
 
 ## Interactive Codex
 
 Start Codex in the repository root:
 
 ```bash
-cd career-ops
+cd AI-Job-Copilot
 codex
 ```
 

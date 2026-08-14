@@ -37,14 +37,12 @@ import { fileURLToPath, pathToFileURL } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = __dirname;
 
-// Repointed for this US-only fork (was santifer/career-ops upstream): the
-// fork has diverged (non-US content removed, US-specific providers added),
-// so auto-updating from upstream would silently reintroduce what this fork
-// deliberately strips out. Pointing at the fork's own repo instead means
-// "update available" only fires on releases the fork owner actually cuts.
-const CANONICAL_REPO = 'https://github.com/MadanMohan0537/my-career-ops.git';
-const RAW_VERSION_URL = 'https://raw.githubusercontent.com/MadanMohan0537/my-career-ops/main/VERSION';
-const RELEASES_API = 'https://api.github.com/repos/MadanMohan0537/my-career-ops/releases/latest';
+// AI Job Copilot has its own release stream because its US-market defaults and
+// providers intentionally differ from the MIT-licensed career-ops foundation.
+// Updating from that foundation directly could undo project-specific choices.
+const CANONICAL_REPO = 'https://github.com/MadanMohan0537/AI-Job-Copilot.git';
+const RAW_VERSION_URL = 'https://raw.githubusercontent.com/MadanMohan0537/AI-Job-Copilot/main/VERSION';
+const RELEASES_API = 'https://api.github.com/repos/MadanMohan0537/AI-Job-Copilot/releases/latest';
 
 // Matches a semver, with or without a leading `v` and an optional
 // Release Please component prefix (e.g. `career-ops-v1.9.0` → `1.9.0`).

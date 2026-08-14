@@ -8,20 +8,16 @@
 
 ## Quick Start
 
-### Recommended — one command
+### Recommended — clone AI Job Copilot
 
 ```bash
-npx @santifer/career-ops init
-```
-
-`npx` ships with Node.js — it runs the installer once without installing anything globally. This clones the latest release into `./career-ops` and installs dependencies. Then move into the workspace and open your AI CLI:
-
-```bash
-cd career-ops
+git clone https://github.com/MadanMohan0537/AI-Job-Copilot.git
+cd AI-Job-Copilot
+npm install
 claude   # or codex / qwen / opencode / agy / grok
 ```
 
-**On first launch, career-ops walks you through setup by chatting** — it asks for your CV, your details (name, target roles, salary), and sets up the job scanner with pre-configured companies. Nothing to edit by hand: just answer its questions. Then paste a job offer URL or description and it evaluates it, writes a report, generates a tailored PDF, and tracks it.
+**On first launch, AI Job Copilot walks you through setup by chatting** — it asks for your CV, your details (name, target roles, salary), and sets up the job scanner with pre-configured companies. Nothing to edit by hand: just answer its questions. Then paste a job offer URL or description and it evaluates it, writes a report, generates a tailored PDF, and tracks it.
 
 If you are using Codex, start the interactive session with `codex`. Slash commands are not guaranteed in Codex, so use the same mode names in a prompt if `/career-ops` is unavailable:
 
@@ -45,18 +41,16 @@ codex exec "Run career-ops email mode for the latest evaluated role. Draft only;
 codex exec "Run career-ops tracker mode and summarize the current statuses."
 ```
 
-### Advanced — clone manually
+### Upstream foundation
 
 <details>
-<summary>Prefer to clone the repo yourself?</summary>
+<summary>Need the original multi-market career-ops project?</summary>
 
 ```bash
 git clone https://github.com/santifer/career-ops.git
-cd career-ops
-npm install
 ```
 
-Then open your AI CLI in the folder — the same first-run onboarding applies. Use this path if you want to track a specific branch, contribute, or audit the code before installing dependencies.
+AI Job Copilot is derived from this MIT-licensed foundation, but has its own US-focused defaults and release stream. Clone upstream only when you want the original multi-market project rather than Madan's project.
 
 </details>
 

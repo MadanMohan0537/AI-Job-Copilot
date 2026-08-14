@@ -1,7 +1,7 @@
 {
-  "name": "my-career-ops",
+  "name": "ai-job-copilot",
   "version": "1.26.0",
-  "description": "US-focused fork of career-ops — AI-powered job search pipeline for the US market, works with any AI coding CLI (Claude Code, Codex, OpenCode, Antigravity, Grok, Qwen, Kimi, Copilot)",
+  "description": "Madan's local-first AI job-search copilot for the US market, with discovery, evaluation, document generation, tracking, and interview preparation",
   "private": true,
   "engines": {
     "node": ">=18"
@@ -83,11 +83,15 @@
     "grok",
     "ai-agent-skill"
   ],
-  "author": "Santiago Fernández de Valderrama <hi@santifer.io> (https://santifer.io) — original career-ops author; US-fork maintenance by MadanMohan0537",
-  "homepage": "https://github.com/MadanMohan0537/my-career-ops",
+  "author": "MadanMohan0537",
+  "contributors": [
+    "Santiago Fernández de Valderrama (original career-ops author)",
+    "Mads Lorentzen (offline dashboard inspiration)"
+  ],
+  "homepage": "https://github.com/MadanMohan0537/AI-Job-Copilot",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MadanMohan0537/my-career-ops"
+    "url": "git+https://github.com/MadanMohan0537/AI-Job-Copilot.git"
   },
   "license": "MIT",
   "dependencies": {

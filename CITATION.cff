@@ -1,13 +1,10 @@
 cff-version: 1.2.0
-message: "If you use career-ops, please cite it using these metadata."
-title: "Career-Ops: AI-Powered Job Search Pipeline"
+message: "If you use AI Job Copilot, please cite this repository and retain the upstream attribution in its license."
+title: "AI Job Copilot: US-Focused AI Job Search Pipeline"
 type: software
 authors:
-  - family-names: "Fernández de Valderrama"
-    given-names: "Santiago"
-    website: "https://santifer.io"
-url: "https://santifer.io"
-repository-code: "https://github.com/santifer/career-ops"
+  - name: "MadanMohan0537"
+repository-code: "https://github.com/MadanMohan0537/AI-Job-Copilot"
 license: MIT
 keywords:
   - ai

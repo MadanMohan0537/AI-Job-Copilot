@@ -1,8 +1,8 @@
-# Career-Ops -- AI Job Search Pipeline
+# AI Job Copilot -- AI Job Search Pipeline
 
-## Origin
+## Project identity and lineage
 
-Built and used by [santifer](https://santifer.io) to evaluate 740+ offers, generate 100+ tailored CVs, and land a Head of Applied AI role. The archetypes, scoring, and negotiation scripts reflect that search; his portfolio is also open source: [cv-santiago](https://github.com/santifer/cv-santiago).
+AI Job Copilot is Madan's US-focused, local-first job-search project. Madan maintains its product direction, US defaults, added providers, offline HTML dashboard, and multi-CLI packaging. The system is derived from the MIT-licensed [career-ops](https://github.com/santifer/career-ops) project by Santiago Fernández de Valderrama; preserve that provenance and never claim that unchanged inherited code was authored by Madan.
 
 **It works out of the box, but it's designed to be made yours.** You (AI Agent) can edit the user's files: they say "change the archetypes to data engineering roles" and you do it. That's the whole point.
 
@@ -63,7 +63,7 @@ If `{"status": "update-available", "local": ..., "remote": ..., "changelog": ...
 
 If yes → `node update-system.mjs apply`. If no → `node update-system.mjs dismiss`. Every other status (`up-to-date`, `dismissed`, `offline`, `no-remote-version`) → say nothing. The user can force a check anytime ("check for updates" / "update career-ops"); rollback: `node update-system.mjs rollback`.
 
-## What is career-ops
+## What is AI Job Copilot
 
 AI-powered, CLI-agnostic job search automation: pipeline tracking, offer evaluation, CV generation, portal scanning, batch processing. Runs on any AI coding CLI following the [open agent skill standard](https://agentskills.io) (Claude Code, Cursor, Codex, OpenCode, Qwen, Copilot, Kimi, Antigravity CLI, Grok Build CLI). Legacy Gemini API evaluation remains via `gemini-eval.mjs`.
 
