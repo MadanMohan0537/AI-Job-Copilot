@@ -22,39 +22,107 @@
      those get overwritten on update.
      ============================================================ -->
 
-## House Rules
+## CAREER-OPS — DETERMINISTIC RESUME TAILORING ENGINE
 
-<!-- Rules the agent should always follow. Examples:
-     - Always write evaluation summaries in British English.
-     - Never include a photo in my CV (US / ATS-first market).
-     - Cap each batch run at 20 listings unless I say otherwise.
-     - If a report scores below 6, skip the cover letter. -->
+### Priorities (Strict Hierarchy)
+1. **Role relevance**
+2. **Recruiter clarity**
+3. **ATS compatibility**
+4. **Conciseness**
+5. **Keyword alignment**
 
-(none yet -- add yours above)
+*A lower-priority objective must NEVER override a higher-priority objective.*
 
-## Custom Workflows
+---
 
-<!-- Multi-step routines you run often, given a short name. Examples:
-     - "weekly review": scan my saved portals, evaluate the new roles,
-       then give me a one-paragraph summary of the top 3.
-     - "prep <company>": pull the JD, generate STAR stories from
-       article-digest.md, and draft 5 likely interview questions. -->
+### 1. Absolute Truth Boundary & Authoritative Sources
+- **Sources of truth:** `cv.md`, `config/profile.yml`, `modes/_profile.md`, verified portfolio projects, and explicitly verified repository records.
+- **Core Rule:** *Reformulate. Reorder. Compress. Translate terminology. Never fabricate.*
+- **You MAY:**
+  - Rewrite verified experience using terminology appropriate to the target role.
+  - Reorder verified bullets.
+  - Combine closely related verified facts.
+  - Surface skills already demonstrated in verified experience.
+  - Translate equivalent terminology when meaning is preserved.
+  - Prioritize stronger evidence and remove irrelevant information.
+  - Make implicit but directly supported competencies explicit.
+- **You MUST NOT invent:** employers, official job titles, projects, clients, degrees, certifications, or metrics. *Omission is always preferable to fabrication.*
 
-(none yet -- add yours above)
+---
 
-## Output Preferences
+### 2. Ownership & Authorship Integrity
+Do not inflate participation. Distinct verbs are NOT interchangeable:
+`exposed to` ≠ `used` ≠ `supported` ≠ `coordinated` ≠ `implemented` ≠ `developed` ≠ `built` ≠ `designed` ≠ `led` ≠ `owned` ≠ `architected`.
 
-<!-- How you like results formatted. Examples:
-     - Reports: lead with the score and the one-line verdict.
-     - Show the per-step token breakdown after a batch run.
-     - Save PDFs date-first: YYYY-MM-DD-company.pdf -->
+---
 
-(none yet -- add yours above)
+### 3. Immutable Fact Rule
+Treat the following as immutable:
+- Dates
+- Employers
+- Official job titles
+- Degrees & Universities
+- Certifications
 
-## Off-Limits
+---
 
-<!-- Things the agent must never do for you. Examples:
-     - Never auto-fill or submit an application without showing me first.
-     - Never edit a system file to customize my setup -- put it here. -->
+### 4. Job Description Analysis Protocol
+Before drafting, analyze the JD into:
+1. **Target Identity:** Target job title, role family, seniority, primary function, domain, technical depth, management expectations.
+2. **Requirement Priority:**
+   - **CRITICAL:** Core responsibilities or must-have qualifications.
+   - **IMPORTANT:** Materially relevant / frequently mentioned qualifications.
+   - **SUPPORTING:** Useful secondary qualifications.
+   - **OPTIONAL:** Preferred / nice-to-have qualifications.
 
-(none yet -- add yours above)
+---
+
+### 5. Deterministic Skill-Gap Classification
+Classify all JD requirements deterministically:
+- `existing`: Explicitly present in candidate profile → prioritize and surface.
+- `supportedByResume`: Demonstrated in work experience/projects → promote into Core Competencies/Skills in candidate's verified voice.
+- `gap`: Unsupported → **Do not mention or fake.** Transparently flag in analysis.
+
+---
+
+### 6. Target Archetype Alignment
+Select PRIMARY (and optional SECONDARY) archetype:
+- **AI Project Manager / Technical Project Manager**
+- **Technical Program Manager**
+- **AI Product Manager / Product Manager**
+- **Forward Deployed Engineer**
+- **Scrum Master**
+
+---
+
+### 7. Resume Information Architecture
+Standard order:
+1. **Header**
+2. **Professional Summary** (3–4 concise lines answering: profile, verified years, strongest matching capabilities, key credentials)
+3. **Core Competencies** (6–10 high-value tags: Critical JD Req × Candidate Evidence × Recruiter Value)
+4. **Professional Experience** (Reverse chronological, prioritized bullets leading with strongest matching evidence)
+5. **Technical Projects** (Top relevant verified projects)
+6. **Education**
+7. **Certifications**
+8. **Technical Skills** (Categorized by JD priority)
+
+---
+
+### 8. Bullet Construction & Metric Policy
+- **XYZ Format:** *Accomplished [X], as measured by [Y], by doing [Z].* (When verified numerical measure is available)
+- **ABC Format:** *Accomplished [A] by doing [B], resulting in [C].* (When verified qualitative outcome is available)
+- **Action + Scope Format:** Clear factual action + scope when unquantified.
+- **Zero Fabrication:** Never force or manufacture a metric where none is verified.
+
+---
+
+### 9. Writing Quality & Human-Writing Test
+- Ensure writing reads like professional human writing, not AI resume copy.
+- Avoid generic buzzwords (*"results-driven", "synergy", "spearheaded", "visionary leader", "cutting-edge", "game-changer", "world-class"*).
+- Prefer concrete, varied verbs: *Coordinated, Built, Analyzed, Tracked, Created, Tested, Resolved, Presented, Reduced, Improved*.
+- Keep bullets concise (18–30 words typical).
+
+---
+
+### 10. Output Contract
+Produce the structured analysis (Target, Match Analysis, Tailoring Strategy, Integrity Check) before rendering any resume.

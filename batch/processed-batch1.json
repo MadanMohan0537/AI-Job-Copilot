@@ -1,0 +1,209 @@
+[
+  {
+    "url": "https://www.amazon.jobs/en/jobs/10500217/senior-technical-program-manager",
+    "company": "Amazon / Twitch",
+    "role": "Senior Technical Program Manager",
+    "skipped": true,
+    "skip_reason": "Requires 5+ years TPM experience — pre-screen gate triggered",
+    "location": "Seattle, WA",
+    "comp_noted": "$148,700–$201,200"
+  },
+  {
+    "url": "https://www.amazon.jobs/en/jobs/10500366/senior-product-manager-amazon-freight-p-l-management",
+    "company": "Amazon",
+    "role": "Senior Product Manager, Amazon Freight P&L Management",
+    "skipped": true,
+    "skip_reason": "Requires 5+ years product/program management experience — pre-screen gate triggered",
+    "location": "Bellevue, WA",
+    "comp_noted": "$136,000–$184,100"
+  },
+  {
+    "url": "https://www.amazon.jobs/en/jobs/10501144/senior-product-manager-tech-ai-cost-governance-aws-insights-and-optimizations",
+    "company": "Amazon / AWS",
+    "role": "Senior PM Tech, AI Cost Governance",
+    "skipped": true,
+    "skip_reason": "Requires 5+ years Technical PM experience — pre-screen gate triggered",
+    "location": "Seattle, WA",
+    "comp_noted": "$152,200–$205,900"
+  },
+  {
+    "url": "https://www.amazon.jobs/en/jobs/10501149/sr-product-manager-technical-external-services-aws-billing-product",
+    "company": "Amazon / AWS",
+    "role": "Sr PM Technical, AWS Billing Product",
+    "skipped": true,
+    "skip_reason": "Requires 5+ years (and 7+ years preferred) Technical PM experience — pre-screen gate triggered",
+    "location": "Seattle, WA / Arlington, VA",
+    "comp_noted": "$152,200–$205,900"
+  },
+  {
+    "url": "https://www.amazon.jobs/en/jobs/10501028/sr-technical-program-manager-prime-air",
+    "company": "Amazon",
+    "role": "Sr. TPM, Prime Air",
+    "skipped": true,
+    "skip_reason": "Requires 5+ years technical product/program management — pre-screen gate triggered",
+    "location": "Seattle, WA",
+    "comp_noted": "$148,700–$201,200"
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/openai/f0d51f11-0f35-4e10-b8bb-d24191ba26f3",
+    "company": "OpenAI",
+    "role": "TPM, Infrastructure Delivery Operations",
+    "skipped": true,
+    "skip_reason": "OpenAI TPM roles consistently require 5–8+ years (confirmed via comparable OpenAI infra TPM postings — Ashby page returned title only, insufficient JD content to verify independently; comparable role Token-as-a-Service TPM requires 8+ years, Compute Infra TPM requires 5+ years). Flagged as likely 5+ based on pattern; could not confirm exact requirement.",
+    "location": "San Francisco, CA",
+    "comp_noted": "Not stated publicly (OpenAI TPM range ~$230K–$720K total per Levels.fyi)"
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/openai/e1b8fd3a-315c-4480-9105-98228093d429",
+    "company": "OpenAI",
+    "role": "Technical Systems PM, User Operations",
+    "skipped": true,
+    "skip_reason": "Requires 8+ years experience driving high-impact technical programs — pre-screen gate triggered",
+    "location": "San Francisco, CA",
+    "comp_noted": "Not stated"
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/openai/60b966d1-9c7f-4f61-b05e-7bda3e0b0a69",
+    "company": "OpenAI",
+    "role": "TPM, AI Safety & Safeguards",
+    "skipped": true,
+    "skip_reason": "JD returned only title via Ashby; OpenAI pattern for this archetype requires 5–7+ years. Comparable active TPM Safety Systems Engineering role requires 5+ years proven track record of complex technical program delivery. Skipped on pattern; could not verify independently.",
+    "location": "San Francisco, CA",
+    "comp_noted": "~$207,000–$335,000 (comparable OpenAI safety PM role)"
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/openai/b65f9125-2c3a-4507-bb20-6213952b5f2c",
+    "company": "OpenAI",
+    "role": "Senior Program Manager, Consumer Device Safety",
+    "skipped": true,
+    "skip_reason": "JD returned only title via Ashby; 'Senior' designation at OpenAI typically requires 5–7+ years. Could not verify exact requirement; skipped on pattern.",
+    "location": "San Francisco, CA",
+    "comp_noted": "Not stated"
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/openai/aecce97b-235b-4ff6-8295-f8c22953f841",
+    "company": "OpenAI",
+    "role": "TPM, Enterprise",
+    "skipped": true,
+    "skip_reason": "JD returned only title via Ashby; OpenAI TPM Enterprise listed on openai.com careers but openai.com returned 403. Based on all comparable OpenAI TPM roles, experience bar is consistently 5–8+. Skipped on pattern.",
+    "location": "San Francisco, CA",
+    "comp_noted": "Not stated"
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/openai/9a6a2f08-d4ef-400b-a765-48b7dab42cc9",
+    "company": "OpenAI",
+    "role": "TPM, Cloud AI Partnerships",
+    "skipped": true,
+    "skip_reason": "JD returned only title via Ashby; OpenAI TPM roles consistently require 5–8+. Skipped on pattern.",
+    "location": "San Francisco, CA",
+    "comp_noted": "Not stated"
+  },
+  {
+    "url": "https://stripe.com/jobs/search?gh_jid=7656504",
+    "company": "Stripe",
+    "role": "Program Manager, GTM Planning",
+    "skipped": true,
+    "skip_reason": "Requires 7+ years experience in GTM/Sales Operations — pre-screen gate triggered. Posting also removed June 2025.",
+    "location": "Chicago, IL / Remote",
+    "comp_noted": "~$120,000–$150,000 (estimated)"
+  },
+  {
+    "url": "https://stripe.com/jobs/search?gh_jid=8126047",
+    "company": "Stripe",
+    "role": "TPM, Infrastructure",
+    "skipped": true,
+    "skip_reason": "Requires 5+ years postbaccalaureate in software/systems engineering or TPM, plus 5+ years cloud infrastructure, 5+ years software architecture — pre-screen gate triggered. Base $173,400–$260,200.",
+    "location": "South San Francisco, CA (remote eligible)",
+    "comp_noted": "$173,400–$260,200"
+  },
+  {
+    "url": "https://www.asana.com/jobs/apply/8044789?gh_jid=8044789",
+    "company": "Asana",
+    "role": "Forward Deployed Engineer, Command by Asana",
+    "skipped": true,
+    "skip_reason": "Requires 6+ years in software engineering/FDE/customer engineering — pre-screen gate triggered",
+    "location": "New York, NY",
+    "comp_noted": "$248,000–$282,000 base"
+  },
+  {
+    "url": "https://www.asana.com/jobs/apply/8031595?gh_jid=8031595",
+    "company": "Asana",
+    "role": "Forward Deployed Engineer, Command by Asana",
+    "skipped": true,
+    "skip_reason": "Requires 6+ years in software engineering/FDE/customer engineering — pre-screen gate triggered",
+    "location": "San Francisco, CA",
+    "comp_noted": "$248,000–$282,000 base"
+  },
+  {
+    "url": "https://www.asana.com/jobs/apply/8044815?gh_jid=8044815",
+    "company": "Asana",
+    "role": "Senior Product Manager, AI Studio",
+    "skipped": true,
+    "skip_reason": "Requires 6+ years in product management — pre-screen gate triggered",
+    "location": "San Francisco, CA",
+    "comp_noted": "$202,000–$230,000 base"
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/anthropic/jobs/5385653008",
+    "company": "Anthropic",
+    "role": "Commercial Operations Program Manager",
+    "skipped": true,
+    "skip_reason": "Requires 10+ years in operations with billing/payments focus — pre-screen gate triggered",
+    "location": "SF / Seattle / NY (hybrid)",
+    "comp_noted": "$190,000–$235,000"
+  },
+  {
+    "url": "https://www.amazon.jobs/en/jobs/10502290/principal-tpm-continuous-infrastructure-engineering",
+    "company": "Amazon",
+    "role": "Principal TPM, Continuous Infrastructure Engineering",
+    "skipped": true,
+    "skip_reason": "Requires 7+ years technical product/program management and 10+ years working with engineering teams — pre-screen gate triggered",
+    "location": "Austin, TX",
+    "comp_noted": "$177,000–$239,400"
+  },
+  {
+    "url": "https://www.amazon.jobs/en/jobs/10502326/sr-technical-program-manager-mads-reporting-engines",
+    "company": "Amazon",
+    "role": "Sr. TPM, MADS Reporting Engines",
+    "skipped": true,
+    "skip_reason": "Requires 5+ years technical product/program management and 3+ years software development — pre-screen gate triggered",
+    "location": "Seattle, WA",
+    "comp_noted": "$148,700–$201,200"
+  },
+  {
+    "url": "https://boards.greenhouse.io/seamlessai/jobs/4898399004",
+    "company": "Seamless.AI",
+    "role": "Program Manager",
+    "skipped": true,
+    "skip_reason": "Job posting returns 404 — posting is dead/removed",
+    "location": "Remote US",
+    "comp_noted": "Unknown"
+  },
+  {
+    "url": "https://boards.greenhouse.io/grafanalabs/jobs/5386941004",
+    "company": "Grafana Labs",
+    "role": "Sr. Program Manager, Demand Generation AI Prompt Engineering",
+    "skipped": true,
+    "skip_reason": "Requires 5-7+ years demand generation marketing experience — pre-screen gate triggered",
+    "location": "Remote US",
+    "comp_noted": "Not stated"
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/quanata/jobs/5994939004",
+    "company": "Quanata",
+    "role": "Technical Program Manager II",
+    "skipped": true,
+    "skip_reason": "Requires 6-8 years program management experience and 5+ years software engineering product development — pre-screen gate triggered",
+    "location": "Remote US",
+    "comp_noted": "$210,000–$285,000"
+  },
+  {
+    "url": "https://boards.greenhouse.io/quanata/jobs/5040838004",
+    "company": "Quanata",
+    "role": "Senior TPM",
+    "skipped": true,
+    "skip_reason": "Requires 12+ years project/program management and 8+ years software engineering product development — pre-screen gate triggered. Posting also removed April 2025.",
+    "location": "Remote US",
+    "comp_noted": "$230,000–$355,000"
+  }
+]
