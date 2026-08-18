@@ -1,4 +1,4 @@
-# 🚀 AI Job Copilot (Career-Ops)
+# 🚀 Job Copilot 
 
 <p align="center">
   <strong>An intelligent, privacy-first, agentic job search operating system built for the United States tech market.</strong>
