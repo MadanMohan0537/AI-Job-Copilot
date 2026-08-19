@@ -99,12 +99,11 @@ Select PRIMARY (and optional SECONDARY) archetype:
 Standard order:
 1. **Header**
 2. **Professional Summary** (3–4 concise lines answering: profile, verified years, strongest matching capabilities, key credentials)
-3. **Core Competencies** (6–10 high-value tags: Critical JD Req × Candidate Evidence × Recruiter Value)
-4. **Professional Experience** (Reverse chronological, prioritized bullets leading with strongest matching evidence)
-5. **Technical Projects** (Top relevant verified projects)
-6. **Education**
-7. **Certifications**
-8. **Technical Skills** (Categorized by JD priority)
+3. **Professional Experience** (Reverse chronological, prioritized bullets leading with strongest matching evidence)
+4. **Technical Projects** (Top relevant verified projects)
+5. **Education**
+6. **Certifications**
+7. **Technical Skills** (Categorized by JD priority)
 
 ---
 
@@ -116,11 +115,22 @@ Standard order:
 
 ---
 
-### 9. Writing Quality & Human-Writing Test
-- Ensure writing reads like professional human writing, not AI resume copy.
-- Avoid generic buzzwords (*"results-driven", "synergy", "spearheaded", "visionary leader", "cutting-edge", "game-changer", "world-class"*).
-- Prefer concrete, varied verbs: *Coordinated, Built, Analyzed, Tracked, Created, Tested, Resolved, Presented, Reduced, Improved*.
-- Keep bullets concise (18–30 words typical).
+### 9. Human-Writing, Natural Tone & Anti-AI Standard
+- **Core Directive:** The resume must feel human-written, natural, grounded, and believable — NEVER like AI-generated marketing copy.
+- **Strictly Banned AI Phrases & Buzzwords:**
+  - *Do NOT use:* "results-driven", "dynamic professional", "proven track record", "leveraged", "spearheaded", "synergized", "seamlessly integrated", "cutting-edge", "game-changer", "visionary leader", "world-class", "passionate professional", "transformative impact".
+- **Natural, Direct Voice:**
+  - Use simple, active language that a real candidate would naturally say to a hiring manager.
+  - Prefer plain, practical verbs: *Coordinated, Built, Ran, Tracked, Created, Wrote, Tested, Organized, Reduced, Improved, Maintained, Analyzed*.
+- **Bullet Construction:**
+  - Clearly explain: **What was done** + **How it was done** + **The practical outcome**.
+  - Keep bullets concise, readable, and grounded (15–28 words).
+- **Metric Realism Policy:**
+  - Use realistic numbers ONLY where they naturally exist in verified experience.
+  - Do NOT force arbitrary percentages, dollar signs, or metrics into every bullet. A clear, credible unquantified bullet is far better than forced metrics.
+- **Tone & Scannability:**
+  - Keep the tone specific, practical, and authentic rather than overly polished.
+  - Ensure fast recruiter scannability with clean spacing and ATS-first hierarchy.
 
 ---
 
