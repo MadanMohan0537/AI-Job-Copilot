@@ -755,7 +755,6 @@ async function runSelfTest() {
       location: 'City, State',
     },
     summary: 'Backend engineer with a focus on R&D and cost-efficient "north star" systems.',
-    competencies: ['Cloud Architecture', 'RESTful API Design', 'Kubernetes & Docker'],
     experience: [{
       company: 'Test Corp',
       role: 'Test Engineer',
@@ -801,13 +800,13 @@ async function runSelfTest() {
     process.exit(1);
   }
 
-  // Guard the escaping contract: the raw ampersand from "Kubernetes & Docker"
+  // Guard the escaping contract: the raw ampersand from the summary
   // must reach the output escaped, and no unescaped literal must survive.
-  if (!html.includes('Kubernetes &amp; Docker')) {
-    console.error('Self-test failed: HTML escaping did not apply to competency text');
+  if (!html.includes('R&amp;D')) {
+    console.error('Self-test failed: HTML escaping did not apply to summary text');
     process.exit(1);
   }
-  if (/Kubernetes & Docker/.test(html)) {
+  if (/R&D/.test(html)) {
     console.error('Self-test failed: found an unescaped ampersand in output');
     process.exit(1);
   }
@@ -853,10 +852,6 @@ async function runSelfTest() {
   // broken partial file doesn't silently remove structural markup).
   if (!html.includes('class="job"')) {
     console.error('Self-test failed: experience section is missing .job class — partial may be broken');
-    process.exit(1);
-  }
-  if (!html.includes('class="competency-tag"')) {
-    console.error('Self-test failed: competencies section is missing .competency-tag class');
     process.exit(1);
   }
   if (!html.includes('class="project"')) {

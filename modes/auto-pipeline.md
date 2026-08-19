@@ -59,6 +59,8 @@ Read `config/profile.yml`. Check `cv.output_format`:
 
 ## Step 4 — Draft Application Answers (only if score >= 4.5)
 
+Before drafting application answers, generate the tailored draft cover-letter PDF required by `modes/pdf.md` and `modes/cover.md`. Save only the PDF deliverable in `output/`; never send or submit it.
+
 If the final score is >= 4.5, generate a draft of responses for the application form:
 
 1. **Extract form questions**: Use Playwright to navigate to the form and take a snapshot. If they cannot be extracted, use the generic questions.

@@ -71,6 +71,16 @@ test("buildPrompt: the pdf prompt still pins tailoring to the real mode", () => 
   assert.match(prompt, /reports\/018-\*\.md/);
 });
 
+test("buildPrompt: the pdf prompt requests a complete, evidence-rich resume", () => {
+  const prompt = buildPrompt({ kind: "pdf", ...ARGS });
+
+  assert.match(prompt, /120[–-]140 word summary/i);
+  assert.match(prompt, /4[–-]6 evidence-rich bullets/i);
+  assert.match(prompt, /complete two-page resume/i);
+  assert.match(prompt, /Vary sentence structures and opening verbs/i);
+  assert.ok(!/competency grid/i.test(prompt), "removed competency grid must not consume output budget");
+});
+
 test("buildPrompt: every kind ends with exactly one VERDICT instruction", () => {
   // Given each kind — job-store.tsx parses that final line client-side
   for (const kind of ["pdf", "research", "evaluate", "fix-portal"]) {

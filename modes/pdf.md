@@ -1,7 +1,7 @@
 # Mode: pdf — ATS-Optimized PDF Generation
 
 Optional pass:
-- **`--hm-audit`:** `/career-ops pdf --hm-audit` adds the hiring-manager audit at Step 20 — an adversarial read of the tailored CV by a separate, research-grounded reviewer before it becomes a PDF (`modes/pdf/hm-audit.md`). Off by default: it costs a subagent dispatch plus web research. Turn it on per run with the flag, or for every run in your own `modes/_custom.md`.
+- **`--hm-audit`:** `/career-ops pdf --hm-audit` adds the hiring-manager audit at Step 21 — an adversarial read of the tailored CV by a separate, research-grounded reviewer before it becomes a PDF (`modes/pdf/hm-audit.md`). Off by default: it costs a subagent dispatch plus web research. Turn it on per run with the flag, or for every run in your own `modes/_custom.md`.
 
 ## Full pipeline
 
@@ -16,7 +16,7 @@ Run `npm run jd:similarity -- {bundle-root}/jd/current.md {bundle-root}/jd/previ
 3. Extract 15-20 keywords from the JD
 4. Run the zero-LLM skill-gap check before drafting anything: write the JD to a scratch file (e.g. `jds/{slug}.md`) if it isn't already one, then `node jd-skill-gap.mjs jds/{slug}.md --summary`. This classifies the JD's explicit requirements against `cv.md` into three buckets — never surface `result.gap` items as if the candidate has them:
    - `existing` — already a named skill in cv.md's Skills section, safe to lead with
-   - `supportedByResume` — not a named skill yet, but cv.md's prose already demonstrates it; legitimate candidates for the Skills section in the user's own words (Step 13's competency grid draws from here first)
+   - `supportedByResume` — not a named skill yet, but cv.md's prose already demonstrates it; legitimate candidates for the Skills section in the user's own words
    - `gap` — cv.md has no trace of it at all. **Tell the user explicitly which skills are gaps before generating the CV.** Never paper over a gap by inventing a claim, and never silently drop it from the conversation — the user decides whether to proceed, address it in the cover letter/interview, or skip the role
 
    If the output prints a `🚨 LOW CONFIDENCE` block, zero skills were classified, so the three empty buckets mean "nothing was classified", not "no gaps found". **Never treat this as a pass, whichever reason is given.** Read the JD yourself to identify the required skills before drafting, and tell the user the automated check produced no result. The reason code says which of the three shapes it is:
@@ -32,30 +32,31 @@ Run `npm run jd:similarity -- {bundle-root}/jd/current.md {bundle-root}/jd/previ
 7. Detect role archetype → adapt framing
 8. Before tailoring, optionally compare the new JD with the latest tailored CV or JD. Resolve the application/report first with `node find.mjs {report-or-tracker-number}`. Use the resolved report/JD snapshot as `{new-jd.txt}` and the referenced prior CV or prior JD as `{previous-jd-or-cv.txt}`; if either source cannot be located, do not silently reuse a CV. Run `npm run jd:similarity -- {new-jd.txt} {previous-jd-or-cv.txt}` and display the `decision` and `score`. Reuse is allowed only when the recommendation is `reuse` or the user explicitly overrides it; `reuse-with-edits` still requires the listed edits, and `regenerate` requires the normal tailoring flow.
 9. Build an internal recruiter-side risk map from the JD using `modes/heuristics/recruiter-side.md`: likely doubts, matching evidence, and which document section should address each doubt
-10. Rewrite Professional Summary by injecting JD keywords + exit narrative bridge ("Built and sold a business. Now applying systems thinking to [JD domain].")
+10. Rewrite Professional Summary as **120-140 words** that state the target role, years/scope, strongest relevant evidence, working style, and the candidate's value for this JD. Inject keywords naturally. It must read like a thoughtful person wrote it: vary sentence length, use plain language, and avoid stacked adjectives or claims such as "results-driven", "dynamic", "visionary", and "proven leader". Count the words before rendering and revise until it is within range.
 11. Select top 3-4 most relevant projects for the job. If `cv.md` carries an Awards / Honors section, populate `awards[]` with the entries that support this role — for an early-career candidate a contest medal or dean's list often outranks a thin project. Omit the key when there is nothing to list and the section disappears entirely; never invent an award to fill it
-12. Reorder experience bullets by JD relevance and by the risk map: strongest matching evidence first
-13. Build competency grid from JD requirements (6-8 keyword phrases), prioritizing `existing` and `supportedByResume` skills from Step 4 — never a `gap` skill
-14. Inject keywords naturally into existing achievements (NEVER invent)
-15. Apply the six-second clarity gate from `modes/heuristics/recruiter-side.md`: top third must make target role, strongest fit, and proof obvious
-16. Read `name` from `config/profile.yml` → normalize to kebab-case lowercase (e.g. "John Doe" → "john-doe") → `{candidate}`
-17. Build the render payload (see the **JSON Input Schema** below) from the tailored content — emit compact structured JSON, **not** full HTML markup — and write it to `/tmp/cv-{candidate}-{company}.json`
-18. Run `node build-cv-html.mjs /tmp/cv-{candidate}-{company}.json {html-path} {template}`, where `{html-path}` is the active bundle's `cv/tailored/vNNN/cv.html` or `output/cv-{candidate}-{company}.html` for a one-off CV, and `{template}` is the path printed by **Selecting the template** below (omit it to use the base template). The script owns every tag, CSS class, and HTML escaping. Keep the HTML outside temporary storage because the dashboard's `D` hotkey regenerates from it.
-19. Run the fact gate against the generated HTML: `node verify-cv-facts.mjs {html-path}`
+12. Preserve the candidate's relevant depth instead of over-compressing it. For each recent or highly relevant role, write 4-6 evidence-rich bullets; for older or less relevant roles, write 2-4. Each bullet should usually be 18-32 words and include action + context/scope + outcome when those facts exist in the source. Write naturally: do not force every bullet into the same formula, begin consecutive bullets with the same verb, stuff several JD keywords into one sentence, or use inflated verbs such as "spearheaded", "orchestrated", "leveraged", and "championed". Do not merge distinct achievements merely to make the CV shorter, and do not pad unsupported detail.
+13. Reorder experience bullets by JD relevance and by the risk map: strongest matching evidence first. Retain every source-backed achievement that materially supports a JD requirement, even if this produces a two-page resume.
+14. Build a focused Skills section from the candidate's real skills, prioritizing `existing` and `supportedByResume` items from Step 4. Do not duplicate the same keywords in a separate competency grid, and never include a `gap` skill.
+15. Inject keywords naturally into existing achievements (NEVER invent)
+16. Apply the six-second clarity gate from `modes/heuristics/recruiter-side.md`: top third must make target role, strongest fit, and proof obvious
+17. Read `name` from `config/profile.yml` → normalize to kebab-case lowercase (e.g. "John Doe" → "john-doe") → `{candidate}`
+18. Build the render payload (see the **JSON Input Schema** below) from the tailored content — emit compact structured JSON, **not** full HTML markup — and write it to `/tmp/cv-{candidate}-{company}.json`
+19. Run `node build-cv-html.mjs /tmp/cv-{candidate}-{company}.json /tmp/cv-{candidate}-{company}.html {template}`. HTML is an internal rendering intermediate only; never present it as a deliverable or leave it in `output/`.
+20. Run the fact gate against the temporary generated HTML: `node verify-cv-facts.mjs /tmp/cv-{candidate}-{company}.html`
     - This is a hard gate before PDF rendering.
     - If it fails, stop and fix the generated HTML by removing invented metrics or adding verified evidence to `cv.md`, `article-digest.md`, or `config/cv-facts.json`.
-20. **Hiring-manager audit — off by default, opt-in only.** Run `modes/pdf/hm-audit.md` if and only if one of these is true; otherwise skip straight to Step 21 without prompting.
+21. **Hiring-manager audit — off by default, opt-in only.** Run `modes/pdf/hm-audit.md` if and only if one of these is true; otherwise skip straight to Step 22 without prompting.
     - The invocation carried `--hm-audit` (`/career-ops pdf --hm-audit`, or the same flag on a natural-language request).
     - `modes/_custom.md` turns it on as a house rule.
 
     The fact gate proves nothing was invented; it cannot tell you whether these are the *right* bullets for the role. The audit researches the likely reviewer, dispatches a separate subagent role-playing them, and returns a bullet-by-bullet keep/cut/rewrite verdict plus a blunt "would I advance this to a screen?" call. It adds a subagent dispatch plus web research on top of the tailoring, which is why it is opted into rather than run on every PDF.
 
-    The audit recommends; the user decides. If they take any rewrite, return to Step 17, rebuild the payload and the HTML, and re-run the fact gate before rendering. The audit is persisted only once that decision is known, and records which rewrites were applied — so the `## HM Audit` section never describes a CV the rendered PDF no longer matches. Do not re-run the audit against the rebuilt CV: a second dispatch doubles the cost for a verdict the user has already acted on.
-21. Execute: `node generate-pdf.mjs {html-path} {pdf-path} --format={letter|a4} --report={report number}`, where `{pdf-path}` is the active bundle's `cv/tailored/vNNN/cv.pdf` or `output/cv-{candidate}-{company}-{YYYY-MM-DD}.pdf` for a one-off CV. `{report number}` is the NNN from the report filename/link (e.g. `008` for `reports/008-acme-….md`), not the tracker `#` column. Pass it whenever the application has (or will have) a report; it records the PDF↔report linkage in `data/pdf-index.tsv` so the dashboard can open and regenerate the exact nested or flat HTML/PDF pair. Omit it only for one-off CVs with no tracker entry.
+    The audit recommends; the user decides. If they take any rewrite, return to Step 18, rebuild the payload and the HTML, and re-run the fact gate before rendering. The audit is persisted only once that decision is known, and records which rewrites were applied — so the `## HM Audit` section never describes a CV the rendered PDF no longer matches. Do not re-run the audit against the rebuilt CV: a second dispatch doubles the cost for a verdict the user has already acted on.
+22. Execute: `node generate-pdf.mjs /tmp/cv-{candidate}-{company}.html {pdf-path} --format={letter|a4} --report={report number}`, then delete both temporary JSON and HTML files after a successful render. The only resume deliverable is the PDF.
     - The rendered PDF has a two-page warning threshold by default. `--max-pages=N` accepts a positive integer; pass `--max-pages=1` when the user or market prefers a one-page CV.
     - If the rendered PDF exceeds its threshold, generation warns loudly with the actual and allowed page counts plus trimming guidance, then reports and indexes the unchanged PDF so existing longer-CV flows keep working.
     - Pass `--strict-pages` only when the user or market requires a hard limit. Strict overflow leaves the draft available for inspection but does not report or index it as successful; trim lower-priority content and rerun.
-22. Report: PDF path, number of pages, keyword coverage %, and any skill gaps from Step 4 still unaddressed
+23. Report: PDF path, number of pages, keyword coverage %, and any skill gaps from Step 4 still unaddressed
 
 ## ATS Rules (clean parsing)
 
@@ -90,11 +91,10 @@ Run `npm run jd:similarity -- {bundle-root}/jd/current.md {bundle-root}/jd/previ
 
 1. Header (large name, gradient, contact, portfolio link)
 2. Professional Summary (3-4 lines, keyword-dense)
-3. Core Competencies (6-8 keyword phrases in flex-grid)
-4. Work Experience (reverse chronological)
-5. Projects (top 3-4 most relevant)
-6. Education & Certifications
-7. Skills (languages + technical)
+3. Work Experience (reverse chronological; recent/relevant roles receive the most detail)
+4. Projects (top 3-4 most relevant, with enough context to understand the problem, contribution, and outcome)
+5. Education & Certifications
+6. Skills (languages + technical; focused, source-backed, and not duplicated elsewhere)
 
 ## Keyword injection strategy (ethical, truth-based)
 
@@ -145,7 +145,6 @@ Write a JSON file with this structure, then run `node build-cv-html.mjs <input.j
   },
   "sections": {
     "summary": "Professional Summary",
-    "competencies": "Core Competencies",
     "experience": "Work Experience",
     "projects": "Projects",
     "education": "Education",
@@ -154,7 +153,6 @@ Write a JSON file with this structure, then run `node build-cv-html.mjs <input.j
     "skills": "Skills"
   },
   "summary": "Personalized summary with JD keywords injected (honest vs cv.md).",
-  "competencies": ["RAG Pipelines", "LLMOps", "Kubernetes & Docker"],
   "experience": [
     {
       "company": "Company Name",
@@ -200,7 +198,6 @@ Write a JSON file with this structure, then run `node build-cv-html.mjs <input.j
 | `candidate.photo_style` | string | Optional photo framing: `rounded` (default), `circle`, or `square`. Read it from `candidate.photo_style` in `config/profile.yml`; invalid values fail before HTML is written. |
 | `sections` | object | Optional localized section titles; any omitted key falls back to the English default shown above. |
 | `summary` | string | Personalized summary with keywords. |
-| `competencies` | string[] | 6-8 keyword phrases → competency tags. |
 | `experience[]` | object | `company`, `role`, `location` (optional), `dates`, `bullets` (reordered, keyword-injected). |
 | `projects[]` | object | `name`, `badge` (optional), `tech` (optional), `description` (a `bullets` array is also accepted and joined into the description line). |
 | `education[]` | object | `title` (degree), `org` (institution), `year`, `description` (optional). |
@@ -263,7 +260,7 @@ c. If mapping fails, show the user what was found and ask for guidance
 Same content generation as the HTML flow (Steps 1-11 above):
 - Rewrite Professional Summary with JD keywords + exit narrative
 - Reorder experience bullets by JD relevance
-- Select top competencies from JD requirements
+- Select the strongest source-backed skills and proof points from JD requirements
 - Inject keywords naturally (NEVER invent)
 
 **IMPORTANT — Character budget rule:** Each replacement text MUST be approximately the same length as the original text it replaces (within ±15% character count). If tailored content is longer, condense it. The Canva design has fixed-size text boxes — longer text causes overlapping with adjacent elements. Count the characters in each original element from Step 2 and enforce this budget when generating replacements.
@@ -274,7 +271,7 @@ a. `start-editing-transaction` on the duplicate design
 b. `perform-editing-operations` with `find_and_replace_text` for each section:
    - Replace summary text with tailored summary
    - Replace each experience bullet with reordered/rewritten bullets
-   - Replace competency/skills text with JD-matched terms
+   - Replace skills text with source-backed JD-matched terms
    - Replace project descriptions with top relevant projects
 c. **Reflow layout after text replacement:**
    After applying all text replacements, the text boxes auto-resize but neighboring elements stay in place. This causes uneven spacing between work experience sections. Fix this:
@@ -315,29 +312,26 @@ d. Report: PDF path, file size, Canva design URL (for manual tweaking)
 
 ## Cover Letter Sub-flow
 
-After generating the CV PDF, offer to generate a cover letter:
+After generating the CV PDF, automatically generate a tailored **draft cover-letter PDF** for the same position. This is a standing user preference; do not ask whether a cover letter is wanted.
 
 ```text
 CV PDF generated: output/{path}
 
-Want a cover letter for this role too?
-- Say "yes" or "cover letter" to generate one now
-- Or run `/career-ops cover {slug}` later
+Cover letter PDF generated: output/{company}-{role}-cover.pdf
 ```
 
 Apply `voice-dna.md` (if present) to the cover letter — full guardrail, conversational voice included (Tier 1 + Tier 2). The CV PDF itself stays Tier 1 only (formal ATS register). See `_writing.md` → Voice DNA.
 
-If the user says yes, run the full cover letter flow from `modes/cover.md` in slug mode:
+Run the cover letter flow from `modes/cover.md` in slug mode:
 1. Load the existing `## Cover Letter Draft` from the evaluation report as a starting point
 2. Run company research (Step 3 of cover.md)
 3. Present keyword list for confirmation (Step 4)
 4. Surface any gaps (Step 5)
-5. Ask the four prompts: why / problems / approach / tone (Step 6)
-6. Draft in chat, wait for approval (Steps 7-8)
-7. Generate cover letter PDF via `node generate-cover-letter.mjs` (Step 9)
-8. Report both PDF paths
+5. Infer why / problems / approach from the JD, report, and source-backed evidence; use a direct, warm-professional tone unless the profile specifies another style
+6. Generate a clearly labeled draft cover-letter PDF via `node generate-cover-letter.mjs` (Step 9)
+7. Report both PDF paths. Never send or submit the draft.
 
-Do not auto-generate the cover letter PDF without going through the interactive steps above.
+This standing preference authorizes draft generation only, never sending or submitting.
 
 ## Post-generation
 

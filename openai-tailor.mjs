@@ -16,7 +16,9 @@
  *   OPENAI_MODEL (or --model)   — the model id
  */
 
-import { readFileSync, existsSync, writeFileSync, mkdirSync } from 'fs';
+import { readFileSync, existsSync, writeFileSync, mkdirSync, unlinkSync } from 'fs';
+import { execFileSync } from 'child_process';
+import { tmpdir } from 'os';
 import { join, dirname, basename } from 'path';
 import { fileURLToPath } from 'url';
 import * as yaml from 'js-yaml';
@@ -65,6 +67,8 @@ if (args.length === 0 || args[0] === '--help' || args[0] === '-h') {
     --url <base>     OpenAI-compatible base URL, including any /v1
                      (env OPENAI_BASE_URL, default https://api.openai.com/v1)
     --key <key>      API key             (env OPENAI_API_KEY)
+    --max-tokens <n> Maximum generated tokens (env OPENAI_MAX_OUTPUT_TOKENS,
+                     default 16384)
     --help           Show this help
 
   ENV
@@ -82,6 +86,7 @@ let reportPath = '';
 let modelName  = process.env.OPENAI_MODEL || 'gpt-4o'; // Tailoring needs a smarter model default than eval
 let baseUrl    = (process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1').replace(/\/$/, '');
 let apiKey     = process.env.OPENAI_API_KEY || '';
+let maxOutputTokens = Number.parseInt(process.env.OPENAI_MAX_OUTPUT_TOKENS || '16384', 10);
 
 for (let i = 0; i < args.length; i++) {
   if (args[i] === '--jd' && args[i + 1]) {
@@ -94,7 +99,14 @@ for (let i = 0; i < args.length; i++) {
     baseUrl = args[++i].replace(/\/$/, '');
   } else if (args[i] === '--key' && args[i + 1]) {
     apiKey = args[++i];
+  } else if (args[i] === '--max-tokens' && args[i + 1]) {
+    maxOutputTokens = Number.parseInt(args[++i], 10);
   }
+}
+
+if (!Number.isInteger(maxOutputTokens) || maxOutputTokens <= 0) {
+  console.error('❌  --max-tokens / OPENAI_MAX_OUTPUT_TOKENS must be a positive integer.');
+  process.exit(1);
 }
 
 if (!jdPath || !reportPath) {
@@ -285,6 +297,7 @@ try {
       ],
       stream:      false,
       temperature: 0.2,
+      max_tokens:  maxOutputTokens,
     }),
     signal: AbortSignal.timeout(timeoutMs),
   });
@@ -300,6 +313,11 @@ try {
   tailoredHtml = data.choices?.[0]?.message?.content?.trim();
   if (!tailoredHtml) {
     console.error('❌  The endpoint returned an empty response.');
+    process.exit(1);
+  }
+  const finishReason = data.choices?.[0]?.finish_reason;
+  if (finishReason === 'length') {
+    console.error(`❌  The endpoint stopped at the ${maxOutputTokens}-token output limit. Increase --max-tokens or OPENAI_MAX_OUTPUT_TOKENS and retry.`);
     process.exit(1);
   }
 } catch (err) {
@@ -331,19 +349,19 @@ try {
     .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
   const filename = `cv-${candidateName}-${companySlug}.html`;
-  const htmlPath = join(PATHS.output, filename);
+  const htmlPath = join(tmpdir(), filename);
 
   writeFileSync(htmlPath, tailoredHtml, 'utf-8');
-  console.log(`\n✅  Tailored HTML saved: ${htmlPath}`);
-
-  // Print next steps
   const pdfFilename = `cv-${candidateName}-${companySlug}-${roleSlug}-${new Date().toISOString().split('T')[0]}.pdf`;
+  const pdfPath = join(PATHS.output, pdfFilename);
   const reportNumMatch = reportFilename.match(/^(\d+)-/);
   const reportNum = reportNumMatch ? reportNumMatch[1] : '001';
 
-  console.log(`\n📄  Next step (generate PDF):\n    node generate-pdf.mjs output/${filename} output/${pdfFilename} --format=letter --report=${reportNum}\n`);
+  execFileSync(process.execPath, [join(ROOT, 'generate-pdf.mjs'), htmlPath, pdfPath, '--format=letter', `--report=${reportNum}`], { stdio: 'inherit' });
+  unlinkSync(htmlPath);
+  console.log(`\n✅  Tailored PDF saved: ${pdfPath}\n`);
 
 } catch (err) {
-  console.warn(`⚠️   Could not save HTML: ${err.message}`);
+  console.warn(`⚠️   Could not generate PDF: ${err.message}`);
   process.exit(1);
 }
