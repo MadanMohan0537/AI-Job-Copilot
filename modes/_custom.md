@@ -93,6 +93,33 @@ The JD controls **how the experience is written and prioritized**. The candidate
 
 If a JD asks for something the candidate clearly did not do, do not manufacture the missing fact. Instead, leave the unsupported hard fact out of the resume and make the rest of the resume as aligned as possible.
 
+## Story-Bank Provenance Gate
+
+`interview-prep/story-bank.md` is useful context, but AI-generated or accumulated interview stories are **not automatically equivalent to user-authored facts**.
+
+Before reusing a quantified claim from the story bank in a resume, cover letter, recruiter email, application answer, or interview talk track, run:
+
+```bash
+node story-provenance-check.mjs --summary
+```
+
+For a strict check, use:
+
+```bash
+node story-provenance-check.mjs --strict
+```
+
+Interpret the statuses as follows:
+
+- `existing` — safe to reuse as a quantified claim, subject to normal fact verification.
+- `supportedByResume` — the surrounding experience is supported, but the exact numeric precision is not verified. Use narrative wording unless the user confirms the number.
+- `derived-unverified` — do not present the number as fact. Ask the user to confirm/correct it or remove the quantification.
+- `user-cannot-confirm` — durable do-not-promote state. Never turn the number back into a factual claim just because it appears in later generated material.
+
+The confirmation UX must not pressure the user into guessing. Offer four neutral outcomes: confirm as stated, provide the correct figure, keep it narrative-only, or mark `user-cannot-confirm`.
+
+This provenance gate complements `verify-cv-facts.mjs`; it does not weaken the JD-first resume strategy.
+
 ## Evaluation / Customization Output
 
 When `oferta` or `auto-pipeline` produces a resume customization plan, replace the default literal `JD requirement -> exact CV line` approach with a **JD-first construction plan**.
@@ -122,4 +149,5 @@ Before rendering the PDF, verify:
 4. JD terminology is distributed across Summary, Experience, Projects, and Skills without keyword stuffing.
 5. The resume is not merely the source CV with synonyms swapped in.
 6. Immutable factual anchors remain correct.
-7. `verify-cv-facts.mjs` still passes before final PDF generation.
+7. Any quantified claim originating in the interview story bank has passed the provenance gate or has been rewritten without unverified quantification.
+8. `verify-cv-facts.mjs` still passes before final PDF generation.
