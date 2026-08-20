@@ -47,27 +47,25 @@ The strict form exits non-zero when unverified or unconfirmable quantified claim
 
 ### Negotiation ROI
 
-`negotiation-roi.mjs` compares annualized total compensation and one-time costs/benefits across a current role and a new offer.
+`negotiation-roi.mjs` turns a **verified quantified achievement** into a draft ROI-based negotiation talking point. It intentionally does not guess the wage basis or task frequency.
+
+The safety boundary is conservative: a quantified story-bank claim is excluded unless the same figure and compatible unit are present in `cv.md`. For time-reduction claims, the script calculates:
+
+`hours saved per occurrence × hourly wage × occurrences per year = estimated annual value`
 
 Example:
 
 ```bash
-npm run negotiation:roi -- \
-  --current-base 135000 \
-  --current-bonus 10000 \
-  --offer-base 160000 \
-  --offer-bonus 15000 \
-  --offer-equity 20000 \
-  --offer-signon 10000 \
-  --offer-relocation 5000 \
-  --offer-cost 6000 \
-  --years 2 \
-  --probability 90
+npm run negotiation:roi -- --summary --wage 45 --frequency weekly
 ```
 
-It reports annual value, annual delta, percentage improvement, one-time net value, multi-year nominal value, probability-adjusted expected value, target gap, and break-even time when applicable.
+or supply an exact annual occurrence count:
 
-JSON input is supported with `--file path/to/offer.json`, and machine-readable output with `--json`.
+```bash
+npm run negotiation:roi -- --summary --wage 45 --occurrences 52
+```
+
+If the story itself contains a wage such as `$45/hr` or a cadence such as `weekly`, that source is used before the CLI fallback. Missing inputs remain uncalculable rather than being guessed. The output is a draft for human review; it does not claim that the achievement's business context automatically transfers to the target employer.
 
 ### Repository syntax lint
 
