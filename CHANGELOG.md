@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.27.0](https://github.com/MadanMohan0537/AI-Job-Copilot/compare/career-ops-v1.26.0...career-ops-v1.27.0) (2026-08-20)
+
+
+### Features
+
+* **tailoring:** integrate deterministic resume tailoring engine specification and template refinements ([897a3a4](https://github.com/MadanMohan0537/AI-Job-Copilot/commit/897a3a4398caaba9a1d4bd50c9ef5a22915048d6))
+
 ## [1.26.0](https://github.com/santifer/career-ops/compare/career-ops-v1.25.0...career-ops-v1.26.0) (2026-08-10)
 
 
