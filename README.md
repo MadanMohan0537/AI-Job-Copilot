@@ -5,14 +5,29 @@
 </p>
 
 <p align="center">
-  <a href="#features"><img src="https://img.shields.io/badge/Status-Production%20Ready-success?style=flat-square" alt="Status"></a>
+  <a href="#features"><img src="https://img.shields.io/badge/Status-Working%20Fork-blue?style=flat-square" alt="Status"></a>
   <a href="#license"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" alt="License"></a>
   <a href="https://nodejs.org"><img src="https://img.shields.io/badge/Node.js-18%2B-brightgreen?style=flat-square&logo=node.js" alt="Node.js"></a>
   <a href="https://agentskills.io"><img src="https://img.shields.io/badge/Standard-Open%20Agent%20Skill-orange?style=flat-square" alt="Agent Skill"></a>
-  <a href="#anti-fabrication"><img src="https://img.shields.io/badge/Truth%20Engine-Zero%20Hallucination-purple?style=flat-square" alt="Truth Engine"></a>
+  <a href="#anti-fabrication"><img src="https://img.shields.io/badge/Truth%20Engine-Fact%20Checks-purple?style=flat-square" alt="Truth Engine"></a>
 </p>
 
 ---
+
+## Start with configuration, then inspect one result
+
+Run `npm run doctor` after installation and configure your own profile and target portals before scanning. Begin with one posting and inspect its evidence, fact checks and tracker entry before using batch workflows. Scanner output and legitimacy scores are signals, not confirmation that an opening is active or that an employer will sponsor a candidate.
+
+### Development and data boundaries
+
+- Read [architecture](ARCHITECTURE.md), [data contracts](DATA_CONTRACT.md) and [contribution rules](CONTRIBUTING.md) before modifying the engine.
+- Use `npm run lint` for source syntax checks and `npm run test:parity` for the manifest's focused self-tests.
+- `npm run verify` validates your local pipeline state; it is different from a clean-source test suite.
+- Keep candidate documents, application records, credentials and generated reports out of a public fork. Inspect your staged files before publishing.
+
+### Upstream attribution
+
+This project builds on [Career-Ops by santifer](https://github.com/santifer/career-ops). Its upstream engine, conventions and contributors are part of this repository's lineage. See [LICENSE](LICENSE), [CONTRIBUTORS.md](CONTRIBUTORS.md) and [CITATION.cff](CITATION.cff). Fork-specific positioning should not be read as authorship of the entire upstream system.
 
 ## 📌 Overview
 
@@ -60,7 +75,7 @@ flowchart TD
 ### 2. ⚡ Zero-Token Job Board Scanner (`scan.mjs` / `scan-ats-full.mjs`)
 - Directly queries ATS public APIs (**Greenhouse, Ashby, Lever, Amazon, Workday, SmartRecruiters, iCIMS**) with **zero LLM token spend**.
 - Intelligent deduplication against `data/scan-history.tsv` to avoid duplicate evaluations.
-- High-throughput keyword sweep across hundreds of company boards in seconds.
+- Keyword sweeps across configured boards; runtime and coverage depend on providers and network access.
 
 ### 3. 🔍 Multi-Block Fit & Legitimacy Evaluation
 Every evaluated role produces a comprehensive report with multi-dimensional scoring:
@@ -117,7 +132,7 @@ npx playwright install chromium
 ```
 
 ### 3. Onboarding & Configuration
-Open the project in your AI CLI (e.g., `agy` or `claude`). The assistant will automatically run `node doctor.mjs` and guide you through configuration:
+Open the project in your AI CLI (e.g., `agy` or `claude`). Run `npm run doctor`, then open the project in your AI CLI for configuration:
 
 1. **Import your CV:** Provide your background to initialize `cv.md`.
 2. **Profile Setup:** Configure `config/profile.yml` (Name, contact info, target roles, salary floor, location preferences).
