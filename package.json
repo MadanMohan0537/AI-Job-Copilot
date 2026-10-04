@@ -1,6 +1,6 @@
 {
   "name": "ai-job-copilot",
-  "version": "1.0.0",
+  "version": "1.27.0",
   "description": "AI-powered job search pipeline for the US market — works with any AI coding CLI (Claude Code, Codex, OpenCode, Antigravity, Grok, Qwen, Kimi, Copilot)",
   "private": true,
   "engines": {
